@@ -1,8 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render, fireEvent } from '@testing-library/react-native';
 import { useMovies } from '@/app/hooks/useMovies';
 import Home from '..';
 import { useFavorites } from '@/app/hooks/useFavorites';
+import { useNavigation } from '@react-navigation/native';
 
 // Mockear AsyncStorage
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -13,21 +14,47 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 }));
 
 // Mockear los hooks
-jest.mock('@react-navigation/native', () => ({
-  useNavigation: jest.fn(),
-}));
 jest.mock('@/app/hooks/useMovies');
 jest.mock('@/app/hooks/useFavorites');
+jest.mock('@react-navigation/native', () => ({
+  useNavigation: () => ({
+    navigate: jest.fn(),
+  }),
+}));
+
+const mockNavigate = jest.fn();
+jest.mock('@react-navigation/native', () => ({
+  useNavigation: () => ({
+    navigate: mockNavigate,
+  }),
+}));
 
 describe('Home Screen', () => {
+  const mockUseMovies = useMovies as jest.Mock;
+  const mockUseFavorites = useFavorites as jest.Mock;
+
+  beforeEach(() => {
+    mockUseMovies.mockReturnValue({
+      movies: [],
+      loading: false,
+      hasMorePages: true,
+      loadMoreMovies: jest.fn(),
+    });
+    mockUseFavorites.mockReturnValue({
+      favorites: [],
+      toggleFavorite: jest.fn(),
+    });
+    mockNavigate.mockClear();
+  });
+
   it('Should render the component correctly', () => {
-    (useMovies as jest.Mock).mockReturnValue({
+    mockUseMovies.mockReturnValue({
       movies: [{ id: 1, title: 'Inception', vote_average: 8.8 }],
       loading: false,
       hasMorePages: true,
       loadMoreMovies: jest.fn(),
     });
-    (useFavorites as jest.Mock).mockReturnValue({
+    mockUseFavorites.mockReturnValue({
       favorites: [1],
       toggleFavorite: jest.fn(),
     });
@@ -42,15 +69,11 @@ describe('Home Screen', () => {
       { id: 1, title: 'Inception', vote_average: 8.8 },
       { id: 2, title: 'The Matrix', vote_average: 8.7 },
     ];
-    (useMovies as jest.Mock).mockReturnValue({
+    mockUseMovies.mockReturnValue({
       movies: mockMovies,
       loading: false,
       hasMorePages: true,
       loadMoreMovies: jest.fn(),
-    });
-    (useFavorites as jest.Mock).mockReturnValue({
-      favorites: [],
-      toggleFavorite: jest.fn(),
     });
 
     const { getByText, getAllByTestId } = render(<Home />);
@@ -60,4 +83,24 @@ describe('Home Screen', () => {
     expect(getAllByTestId('movie-list-item')).toHaveLength(2);
   });
 
+  it('Should navigate to movie details when a movie is selected', () => {
+    const mockMovies = [
+      { id: 1, title: 'Inception', vote_average: 8.8 },
+      { id: 2, title: 'The Matrix', vote_average: 8.7 },
+    ];
+    mockUseMovies.mockReturnValue({
+      movies: mockMovies,
+      loading: false,
+      hasMorePages: true,
+      loadMoreMovies: jest.fn(),
+    });
+
+    const { getAllByTestId } = render(<Home />);
+    const movieItems = getAllByTestId('movie-list-item');
+    
+    fireEvent.press(movieItems[0]);
+
+    expect(mockNavigate).toHaveBeenCalledWith('MovieDetails', { movieId: 1 });
+    expect(mockNavigate).toHaveBeenCalledTimes(1);
+  });
 });
