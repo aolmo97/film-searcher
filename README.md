@@ -1,4 +1,4 @@
-# Expo App Project
+# Film Searcher Project
 
 ## Overview
 This is an [Expo](https://expo.dev) application created using [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). It provides a foundation for developing a cross-platform mobile application using React Native and Expo tools.
