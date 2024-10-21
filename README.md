@@ -1,51 +1,66 @@
-# Welcome to your Expo app 👋
+# Expo App Project
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Overview
+This is an [Expo](https://expo.dev) application created using [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). It provides a foundation for developing a cross-platform mobile application using React Native and Expo tools.
 
-## Get started
+## Key Features
+- Built with Expo framework
+- Uses file-based routing
+- Supports development builds, Android emulator, iOS simulator, and Expo Go
 
-1. Install dependencies
+## Getting Started
 
+### Prerequisites
+- Node.js and npm installed on your machine
+
+### Setup
+1. Clone this repository
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### Running the App
+Start the development server:
 ```bash
-npm run reset-project
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+This will display options to run the app on:
+- Development build
+- Android emulator
+- iOS simulator
+- Expo Go (limited sandbox environment)
 
-## Learn more
+### Try the App on Your Device
+To try the app on your physical device:
 
-To learn more about developing your project with Expo, look at the following resources:
+1. Install the Expo Go app on your smartphone:
+   - [Expo Go for Android](https://play.google.com/store/apps/details?id=host.exp.exponent)
+   - [Expo Go for iOS](https://apps.apple.com/app/expo-go/id982107779)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+2. Start the development server as mentioned above.
 
-## Join the community
+3. Scan the QR code displayed in your terminal with your device's camera (iOS) or the Expo Go app (Android).
 
-Join our community of developers creating universal apps.
+4. The app will open in Expo Go, allowing you to test and interact with it on your device.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Development
+- Main development takes place in the `app` directory
+- The project uses file-based routing for navigation
 
+
+## Resources
+- [Expo Documentation](https://docs.expo.dev/)
+- [Expo Guides](https://docs.expo.dev/guides)
+- [Learn Expo Tutorial](https://docs.expo.dev/tutorial/introduction/)
+
+## Community and Support
+- [Expo on GitHub](https://github.com/expo/expo)
+- [Discord Community](https://chat.expo.dev)
+
+## Contributing
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for more details.
+
+## License
+This project is licensed under the [MIT License](LICENSE).
