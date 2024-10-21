@@ -19,6 +19,11 @@ This is an [Expo](https://expo.dev) application created using [`create-expo-app`
    ```bash
    npm install
    ```
+3. Create a `.env` file in the root directory of the project
+4. In the `.env` file, define the `EXPO_PUBLIC_API_KEY` variable with your API key:
+   ```
+   EXPO_PUBLIC_API_KEY=your_api_key_here
+   ```
 
 ### Running the App
 Start the development server:

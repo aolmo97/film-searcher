@@ -1,6 +1,6 @@
 import { Movie } from "../types/types";
 
-const API_KEY = "6698777765a6dd7621acea6b8aca8ab2";
+const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
 export const fetchPopularMovies = async (page: number) => {
   const response = await fetch(

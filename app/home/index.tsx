@@ -11,6 +11,7 @@ import { useMovies } from "../hooks/useMovies";
 import { useFavorites } from "../hooks/useFavorites";
 import { RootStackParamList } from "../types/types";
 import { MovieList } from "../components/MovieList";
+import { ErrorMessage } from "../components/ErrorMessage";
 
 export default function Home() {
   const navigation =
@@ -25,7 +26,9 @@ export default function Home() {
   if (loading && movies.length === 0) {
     return <LoadingIndicator />;
   }
-
+  if (!movies) {
+    return <ErrorMessage message="No movies available" />;
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Popular Movies</Text>
