@@ -29,7 +29,7 @@ export default function Search() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Búsqueda de Películas</Text>
+      <Text style={styles.header}>Movies Search</Text>
       <SearchForm
         query={query}
         category={category}

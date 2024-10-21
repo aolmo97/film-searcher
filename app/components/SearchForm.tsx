@@ -21,7 +21,7 @@ export const SearchForm: React.FC<SearchFormProps> = ({
   <View style={styles.searchContainer}>
     <TextInput
       style={styles.searchInput}
-      placeholder="Buscar película"
+      placeholder="Search movies"
       value={query}
       onChangeText={onQueryChange}
       onSubmitEditing={onSubmit}
